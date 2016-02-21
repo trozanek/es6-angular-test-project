@@ -1,8 +1,8 @@
 const ObjectID = require('mongodb').ObjectID;
-const accountsSvc = require('./../services/accounts');
+const AccountsSvc = require('./../services/accounts');
 
 module.exports.searchAccounts = (req, res, next) => {
-    accountsSvc.queryAccounts({}).then((result) => {
+    AccountsSvc.queryAccounts({}).then((result) => {
         if (result.length > 0) {
             res.send(result);    
         } else {
@@ -18,7 +18,7 @@ module.exports.getAccount = (req, res, next) => {
     var query = {};
     query._id = new ObjectID(req.params.id);
 
-    accountsSvc.queryAccounts(query).then((result) => {
+    AccountsSvc.queryAccounts(query).then((result) => {
         if (result.length > 0) {
             res.send(result[0]);    
         } else {
@@ -43,8 +43,8 @@ module.exports.updateAccount = (req, res, next) => {
         }
     };
     
-    accountsSvc.updateAccounts(query, update).then((result) => {
-        res.status(201);
+    AccountsSvc.updateAccounts(query, update).then((result) => {
+        res.status(200);
         res.send(result);
     }).catch((err) => {
         if (err) {

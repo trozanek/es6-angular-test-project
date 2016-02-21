@@ -14,7 +14,7 @@ module.exports.queryAccounts = (query) => {
 
 module.exports.updateAccounts = (query, update) => {
     return new Promise((resolve, reject) => {
-        mongoAdapter.db.collection('accounts').update(query, update, (err, result) => {
+        mongoAdapter.db.collection('accounts').findAndModify(query, [['_id', 1]], update, {update: true}, (err, result) => {
             if (err) {
                 reject(err);
                 return;
