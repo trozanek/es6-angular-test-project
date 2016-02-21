@@ -1,0 +1,13 @@
+{
+  "name": "socialhub-client",
+  "version": "1.0.0",
+  "description": "Recruitment task client static hosting",
+  "author": "Tomasz Rozanek <tomasz@rozanek.pl>",
+  "main": "static.js",
+  "scripts": {
+    "start": "node static.js"
+  },
+  "dependencies": {
+    "express": "^4.13.3"
+  }
+}
