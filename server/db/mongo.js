@@ -14,7 +14,7 @@ if (process.env.MONGO_PORT) {
 }
 
 module.exports.InitDB = function () {
-    return new Promise(function (resolve, reject) {
+    return new Promise((resolve, reject) => {
         module.exports.db = db = new Db(dbName, new Server(dbHost, dbPort, {}, {}), { safe: false, auto_reconnect: true });
 
         db.open(function (e, d) {
@@ -30,7 +30,7 @@ module.exports.InitDB = function () {
 }
 
 module.exports.Disconnect = function () {
-    return new Promise(function (resolve, reject) {
+    return new Promise((resolve, reject) => {
         if (db) {
             db.close();
             resolve();
