@@ -1,7 +1,8 @@
 'use strict';
 
 const express = require('express');
-
+const mongoAdapter = require('./db/mongo');
+const os = require('os');
 // Constants
 const PORT = 8080;
 
@@ -12,5 +13,6 @@ app.get('/', function (req, res) {
 });
 
 app.listen(PORT);
-console.log(process.env)
-console.log('Running on http://localhost:' + PORT);
+
+mongoAdapter.InitDB().then(function() {})
+console.log(`Running on http:// ${os.hostname()} : ${os.port}`);
