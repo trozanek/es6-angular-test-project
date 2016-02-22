@@ -26,7 +26,7 @@ Running container installs, populates db with dump data and runs mongo.
 Second container contains node and frontend app. You can also replace mapped ports. This container links to mongo container.
 Running this container will deploy applications and run api server script and static server hosting a frontend app using PM2.
 
-    sudo docker run -d -v /usr/src/app -p 80:80 -p 8080:8080 --name socialhubnode --link socialhubdb:mongo socialhub
+    docker run -d -v /usr/src/app -p 80:80 -p 8080:8080 --name socialhubnode --link socialhubdb:mongo herunohazumi/socialhub
 
 ## Run from sources
 
