@@ -10,5 +10,5 @@ const app = express();
 app.use(express.static('app'));
 
 app.listen(PORT);
-console.log(process.env);
+
 console.log('Running on http://localhost:' + PORT);

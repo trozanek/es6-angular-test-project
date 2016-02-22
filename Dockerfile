@@ -13,7 +13,10 @@ RUN npm install
 
 WORKDIR /usr/src/app/server
 RUN npm install
-RUN npm install pm2 -g  
+RUN npm install pm2 -g
+RUN npm install -g webpack
+RUN npm install -g grunt
+RUN npm install -g grunt-cli
 
 WORKDIR /usr/src/app/
 
