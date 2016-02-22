@@ -1,6 +1,6 @@
 {
     "mongo" : {
-        "host": "localhost",
+        "host": "188.166.150.226",
         "port": 27017,
         "dbName": "addonsTest"
     }

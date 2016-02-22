@@ -37,7 +37,7 @@ Running this container will deploy applications and run api server script and st
 - Clone source
 - cd to server directory
 - run npm install
-- add host, port and db name in config.json
+- add host, port and db name in config.json (By default it's set to an instance on my Digital Ocean droplet)
 - cd to client directory
 - run npm install
 - run grunt webpack:prod
