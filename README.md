@@ -1,7 +1,3 @@
-Hi, I am providing you only with server part. You'll have at least something before my interview. I did't manage to do the whole task as I got it 
-friday evening and I was already skiing in Slovakia by then. Got back today evening and I came up with before started sit-sleeping ;]
-It's unfortunatelly missing tests. Hope it would show you at least something.
-
 # Setup
 
 There are 2 ways of setting up the app
