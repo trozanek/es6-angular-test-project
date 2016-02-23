@@ -1,7 +1,4 @@
-var path = require('path');
-var testsIndex = path.join(__dirname, 'app/js/tests/test_index.js');
-var preprocessors = {};
-preprocessors[testsIndex] = ['webpack', 'sourcemap'];
+// Karma configuration
 
 module.exports = function(config) {
   config.set({
@@ -11,37 +8,49 @@ module.exports = function(config) {
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['jasmine-ajax', 'jasmine'],
+    frameworks: ['jspm', 'mocha', 'chai'],
 
-    // list of files / patterns to load in the browser
-    files: [
-      testsIndex
-    ],
-
-    // Allow us some time to build the sourcemaps.
-    browserNoActivityTimeout: 20000,
-
-    // preprocess matching files before serving them to the browser
-    // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
-    preprocessors: preprocessors,
+    // start these browsers
+    // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
+    browsers: ['Chrome'],
 
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['progress'],
+    reporters: ['mocha'],
 
-    // web server port
-    port: 9876,
+    // Continuous Integration mode
+    // if true, Karma captures browsers, runs the tests and exits
+    singleRun: true,
 
     // enable / disable colors in the output (reporters and logs)
     colors: true,
 
+    // list of files / patterns to load in the browser
+    files: [],
+
+    jspm: {
+      // Edit this to your needs
+      config: 'jspm.config.js',
+      loadFiles: ['client/app/**/*.spec.js'],
+      serveFiles: [
+        'client/app/**/*.js',
+        'client/app/**/*.html',
+        'client/app/**/*.css'
+      ]
+    },
+
+    proxies: {
+      // '/jspm_packages': '/base/jspm_packages',
+      // '/jspm.config.js': '/base/jspm.config.js'
+    },
+
+    // list of files to exclude
+    exclude: [],
+
     // level of logging
     // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
-    logLevel: config.LOG_DEBUG,
+    logLevel: config.LOG_INFO,
 
-    webpackServer: {
-        noInfo: true
-    },
   });
 };

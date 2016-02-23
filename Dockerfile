@@ -7,16 +7,16 @@ RUN mkdir -p /usr/src/app
 # Bundle app source
 COPY . /usr/src/app
 
+# Install global node dependencies
+RUN npm install pm2 -g
+RUN npm install jspm gulp karma karma-cli -g
+
 # Install app dependencies
 WORKDIR /usr/src/app/client
 RUN npm install
 
 WORKDIR /usr/src/app/server
 RUN npm install
-RUN npm install pm2 -g
-RUN npm install -g webpack
-RUN npm install -g grunt
-RUN npm install -g grunt-cli
 
 WORKDIR /usr/src/app/
 

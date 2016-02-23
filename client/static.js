@@ -7,7 +7,7 @@ const PORT = 80;
 
 // App
 const app = express();
-app.use(express.static('app'));
+app.use(express.static('build'));
 
 app.listen(PORT);
 

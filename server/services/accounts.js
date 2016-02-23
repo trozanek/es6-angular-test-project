@@ -1,3 +1,5 @@
+'use strict';
+
 const mongoAdapter = require('./../db/mongo');
 
 module.exports.queryAccounts = (query) => {

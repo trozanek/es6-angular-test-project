@@ -9,6 +9,11 @@ const PORT = 8080;
 
 // App
 const app = express();
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 const router = require('./router');
 const errorHandler = require('./middlewares/errorHandler');
 
