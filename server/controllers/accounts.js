@@ -1,10 +1,15 @@
+'use strict';
+
 const ObjectID = require('mongodb').ObjectID;
 const AccountsSvc = require('./../services/accounts');
 
 module.exports.searchAccounts = (req, res, next) => {
     AccountsSvc.queryAccounts({}).then((result) => {
         if (result.length > 0) {
-            res.send(result);    
+             let response = {
+                result: result
+            }; 
+            res.send(response);    
         } else {
             res.status(204);
             res.send();
@@ -20,7 +25,10 @@ module.exports.getAccount = (req, res, next) => {
 
     AccountsSvc.queryAccounts(query).then((result) => {
         if (result.length > 0) {
-            res.send(result[0]);    
+            let response = {
+                result: result[0]
+            };    
+            res.send(response);    
         } else {
             res.status(204);
             res.send();
@@ -44,8 +52,11 @@ module.exports.updateAccount = (req, res, next) => {
     };
     
     AccountsSvc.updateAccounts(query, update).then((result) => {
+        let response = {
+            result: result
+        }; 
         res.status(200);
-        res.send(result);
+        res.send(response);
     }).catch((err) => {
         if (err) {
             next(err);

@@ -1,3 +1,5 @@
+'use strict';
+
 const Db = require('mongodb').Db;
 const Server = require('mongodb').Server;
 const config = require('./../config.json');
