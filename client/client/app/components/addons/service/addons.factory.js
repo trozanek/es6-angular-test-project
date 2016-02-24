@@ -1,5 +1,5 @@
-let AddonsFactory = ($resource) => {
-    let resource = $resource('http://localhost:8080/accounts/:id', {id: '@id'}, {
+let AddonsFactory = ($resource, $location) => {
+    let resource = $resource(`http://${$location.host()}:8080/accounts/:id`, {id: '@id'}, {
         'update': {
             method: 'PUT'
         } 

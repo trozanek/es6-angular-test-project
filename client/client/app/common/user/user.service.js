@@ -1,6 +1,6 @@
-let UserService = function($resource, $q){
+let UserService = function($resource, $q, $location){
     
-    let resource = $resource('http://localhost:8080/users/:id', {id: '@id'});
+    let resource = $resource(`http://${$location.host()}:8080/users/:id`, {id: '@id'});
     
     this.user = {};
     
