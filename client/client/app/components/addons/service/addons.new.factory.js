@@ -1,7 +1,7 @@
-let AddonsNewFactory = ($resource, $q, $location) => {
+let AddonsNewFactory = ($resource, $q) => {
     let addons = [];
     
-    let resource = $resource(`http://${$location.host()}:8080/addons/new`, {}, {
+    let resource = $resource('http://localhost:8080/addons/new', {}, {
         get: {
             method: 'GET',
             isArray: true
