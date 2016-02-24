@@ -14,6 +14,8 @@ RUN npm install jspm gulp karma karma-cli -g
 # Install app dependencies
 WORKDIR /usr/src/app/client
 RUN npm install
+RUN jspm install
+RUN gulp build
 
 WORKDIR /usr/src/app/server
 RUN npm install

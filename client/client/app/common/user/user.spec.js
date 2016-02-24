@@ -3,7 +3,7 @@
 import angular from 'angular';
 import 'angular-mocks';
 import UserModule from './user';
-import UserFactory from './user.factory';
+import UserFactory from './user.service';
 import test from './user-test';
 
 describe('User', ()=>{

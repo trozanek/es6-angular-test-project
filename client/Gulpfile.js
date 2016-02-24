@@ -26,6 +26,7 @@ var resolveToComponents = resolveTo('app/components'); // app/components/{glob}
 // map of all our paths
 var paths = {
 	css: resolveToApp('**/*.css'),
+    icons: path.join(__dirname, 'client', 'jspm_packages/github/twbs/bootstrap@3.3.6/fonts/*.**'),
 	html: [
 		resolveToApp('**/*.html'),
 		path.join(root, 'index.html')
@@ -64,7 +65,6 @@ gulp.task('build', function() {
 			// Also create a fully annotated minified copy
 			return gulp.src(dist)
 				.pipe(ngAnnotate())
-				.pipe(uglify())
 				.pipe(rename('app.min.js'))
 				.pipe(gulp.dest(paths.dist))
 		})
@@ -74,8 +74,11 @@ gulp.task('build', function() {
 				.pipe(htmlreplace({
 					'js': 'app.min.js'
 				}))
-				.pipe(gulp.dest(paths.dist));
-		});
+				.pipe(gulp.dest(paths.dist))
+		}).then(function() {
+            return gulp.src(paths.icons)
+                .pipe(gulp.dest(path.join(paths.dist, 'jspm_packages/github/twbs/bootstrap@3.3.6/fonts/')));
+        })
 });
 
 gulp.task('component', function(){

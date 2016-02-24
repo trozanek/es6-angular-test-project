@@ -2,6 +2,7 @@
 
 const ObjectID = require('mongodb').ObjectID;
 const AccountsSvc = require('./../services/accounts');
+const Mailgun = require('mailgun').Mailgun;
 
 module.exports.searchAccounts = (req, res, next) => {
     AccountsSvc.queryAccounts({}).then((result) => {
@@ -20,7 +21,7 @@ module.exports.searchAccounts = (req, res, next) => {
 } 
 
 module.exports.getAccount = (req, res, next) => {
-    var query = {};
+    let query = {};
     query._id = new ObjectID(req.params.id);
 
     AccountsSvc.queryAccounts(query).then((result) => {
@@ -39,28 +40,57 @@ module.exports.getAccount = (req, res, next) => {
 } 
 
 module.exports.updateAccount = (req, res, next) => {
-    var query = {};
-    var update = {};
-    var featuresPayload = req.body.features;
+    let query = {};
+    let update = {};
+    let featuresPayload = req.body.features;
+    let order = req.body.order;
     
-    query._id = new ObjectID(req.params.id);
+    if (featuresPayload) {
+        query._id = new ObjectID(req.params.id);
     
-    update = {
-        $set: {
-            features: featuresPayload
-        }
-    };
+        update = {
+            $set: {
+                features: featuresPayload
+            }
+        };
+        
+        AccountsSvc.updateAccounts(query, update).then((result) => {
+            let response = {
+                result: result
+            }; 
+            res.status(200);
+            res.send(response);
+        }).catch((err) => {
+            if (err) {
+                next(err);
+                return;
+            }
+        });    
+    } else if (order) {
+        let mg = new Mailgun('key-6efb1375e397f54843cd62d982712d1d');
+        /* for some reason I keep getting 403 when trying to send message to addons-test@mailinator.com so I set my personal mail here
+           and I get those emails ;] You can replace with any other mail
+        */
+        mg.sendText('tomasz@rozanek.pl', ['herunohazumi@gmail.com'],
+            `Premium order for account ${order.user.accountId}`,
+            `User ${order.user.firstName} ${order.user.lastName} ordered ${order.action ? 'activation ' : 'disactivation'} of \
+            premium addon ${order.addon.name} for ${order.user.accountId} account`,
+            {},
+            function(err) {
+                if (err) {
+                    console.log('Oh noes: ' + err);
+                    res.status(500);
+                    res.send();
+                } else {
+                    res.status(200);
+                    res.send();
+                }
+            }
+        );
+        
+    } else {
+        res.status(400);
+        res.send('Payload required');
+    }
     
-    AccountsSvc.updateAccounts(query, update).then((result) => {
-        let response = {
-            result: result
-        }; 
-        res.status(200);
-        res.send(response);
-    }).catch((err) => {
-        if (err) {
-            next(err);
-            return;
-        }
-    });
 }

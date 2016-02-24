@@ -1,9 +1,28 @@
+<h2>Features</h2>
 <ul class="list-group">
   <li href="#" class="list-group-item clearfix" ng-repeat="addon in vm.addons">
-    <span class="glyphicon glyphicon-file pull-left"></span>
     <span class="pull-left">
-        <h4 class="list-group-item-heading">{{addon.name}}</h4>
+        <h4 class="list-group-item-heading">{{addon.name}} <span ng-if="addon.isNew" class="label label-info">New</span></h4>
         <p class="list-group-item-text">{{addon.desc}}</p>
+    </span>
+    <span class="pull-right">
+        <a class="btn" ng-class="{'btn-success': !addon.enabled, 'btn-danger' : addon.enabled}" href="#" role="button" ng-click="vm.toggleAddon(addon.id)">
+            {{addon.enabled ? 'DISABLE' : 'ENABLE'}}
+        </a>
+    </span>
+  </li>
+</ul>
+<h2>Premium features</h2>
+<ul class="list-group">
+  <li href="#" class="list-group-item clearfix" ng-repeat="addon in vm.premiumAddons">
+    <span class="pull-left">
+        <h4 class="list-group-item-heading">{{addon.name}} <span ng-if="addon.isNew" class="label label-info">New</span></h4>
+        <p class="list-group-item-text">{{addon.desc}}</p>
+    </span>
+    <span class="pull-right">
+        <a class="btn" ng-class="{'btn-warning': !addon.enabled, 'btn-danger' : addon.enabled}" href="#" role="button" ng-click="vm.orderPremiumAddon(addon.id)">
+            {{addon.enabled ? 'DISABLE' : 'ORDER'}}
+        </a>
     </span>
   </li>
 </ul>

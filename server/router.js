@@ -4,6 +4,7 @@ const express = require('express');
 
 const accountsCtrl = require('./controllers/accounts');
 const usersCtrl = require('./controllers/users');
+const addonsCtrl = require('./controllers/addons');
 
 const router = express.Router();
 
@@ -15,6 +16,8 @@ router.get('/accounts/:id', accountsCtrl.getAccount);
 router.put('/accounts/:id', accountsCtrl.updateAccount);
 router.get('/users', usersCtrl.searchUsers);
 router.get('/users/:id', usersCtrl.getUser);
+router.get('/addons/new', addonsCtrl.getNewAddons);
+router.post('/addons/new/:id', addonsCtrl.addNewAddon);
 
 module.exports = router;
 

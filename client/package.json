@@ -2,7 +2,9 @@
   "name": "socialhub-client",
   "version": "0.0.1",
   "description": "starter",
-  "dependencies": {},
+  "dependencies": {
+    "express": "^4.13.3"
+  },
   "scripts": {
     "test": "karma start",
     "postinstall": "jspm install"
@@ -20,11 +22,13 @@
       "angular-resource": "npm:angular-resource@1.4.0",
       "angular-ui-router": "github:angular-ui/ui-router@^0.2.15",
       "capaj/systemjs-hot-reloader": "github:capaj/systemjs-hot-reloader@^0.5.0",
-      "css": "github:systemjs/plugin-css@^0.1.11",
+      "clean-css": "npm:clean-css@^3.4.9",
+      "css": "github:systemjs/plugin-css@0.1.20",
       "lorem-ipsum": "npm:lorem-ipsum@1.0.3",
-      "normalize.css": "github:necolas/normalize.css@^3.0.3",
+      "normalize.css": "github:necolas/normalize.css@3.0.3",
       "text": "github:systemjs/plugin-text@^0.0.2",
-      "twbs/bootstrap": "github:twbs/bootstrap@^3.3.6"
+      "twbs/bootstrap": "github:twbs/bootstrap@^3.3.6",
+      "underscore": "npm:underscore@1.8.3"
     },
     "devDependencies": {
       "babel": "npm:babel-core@^5.8.24",
@@ -43,6 +47,8 @@
     "gulp-uglify": "^1.2.0",
     "jspm": "^0.16.15",
     "karma": "^0.12.36",
+    "chai": "^3.5.0",
+    "mocha": "^2.4.5",
     "karma-chai": "^0.1.0",
     "karma-chrome-launcher": "^0.1.12",
     "karma-jspm": "^1.1.5",
