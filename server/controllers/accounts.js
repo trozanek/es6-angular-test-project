@@ -68,20 +68,18 @@ module.exports.updateAccount = (req, res, next) => {
         });    
     } else if (order) {
         let mg = new Mailgun('key-6efb1375e397f54843cd62d982712d1d');
-        /* for some reason I keep getting 403 when trying to send message to addons-test@mailinator.com so I set my personal mail here
-           and I get those emails ;] You can replace with any other mail
-        */
-        mg.sendText('tomasz@rozanek.pl', ['herunohazumi@gmail.com'],
+        mg.sendText('tomasz@rozanek.pl', ['herunohazumi@gmail.com','addons-test@mailinator.com'],
             `Premium order for account ${order.user.accountId}`,
             `User ${order.user.firstName} ${order.user.lastName} ordered ${order.action ? 'activation ' : 'disactivation'} of \
             premium addon ${order.addon.name} for ${order.user.accountId} account`,
             {},
             function(err) {
-                if (err) {
+                if (err, response) {
                     console.log('Oh noes: ' + err);
                     res.status(500);
                     res.send();
                 } else {
+                    console.log(response)
                     res.status(200);
                     res.send();
                 }
